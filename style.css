@@ -1,10 +1,11 @@
 /* ============================================================
    Halo — landing site
    Warm editorial theme (cream / nude / lavender).
-   Zero JS, no build step.
+   Auto light/dark following the device theme. Zero JS, no build step.
    ============================================================ */
 
 :root {
+  color-scheme: light dark;
   --bg:          #FDF9F3;
   --bg-nude:     #F6EDE2;
   --bg-lav:      #F1ECFA;
@@ -17,11 +18,53 @@
   --gold:        #FFB648;
   --grad:        linear-gradient(115deg, #FFB648 0%, #FF7E6B 52%, #B69CFF 100%);
   --border:      rgba(46, 39, 64, 0.09);
+  --border-strong: rgba(46, 39, 64, 0.16);
   --radius:      26px;
   --radius-lg:   34px;
   --shadow-sm:   0 6px 24px -10px rgba(46, 39, 64, 0.14);
   --shadow:      0 24px 70px -24px rgba(46, 39, 64, 0.22);
   --maxw:        1120px;
+  --header-bg:   rgba(253, 249, 243, 0.85);
+  --navcta-bg:   #2E2740;
+  --navcta-text: #FFFFFF;
+  --cta-bg:      #2E2740;
+  --cta-text:    #FFFFFF;
+  --mockup-frame: #2E2740;
+  --screen-bg:   linear-gradient(180deg, #FDF9F3 0%, #FBF2E7 100%);
+  --screen-card: #FFFFFF;
+  --visual-nude: #F1E5D6;
+  --visual-lav:  #EBE4FA;
+}
+
+/* Dark theme: follows the device appearance automatically. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #171420;
+    --bg-nude:     #1D1928;
+    --bg-lav:      #211B2F;
+    --surface:     #2A2440;
+    --ink:         #F2EDE6;
+    --muted:       #A79FBD;
+    --accent-dark: #FF9C7A;
+    --border:      rgba(255, 255, 255, 0.10);
+    --border-strong: rgba(255, 255, 255, 0.24);
+    --shadow-sm:   0 6px 24px -10px rgba(0, 0, 0, 0.55);
+    --shadow:      0 24px 70px -24px rgba(0, 0, 0, 0.65);
+    --header-bg:   rgba(23, 20, 32, 0.85);
+    --navcta-bg:   #F2EDE6;
+    --navcta-text: #1A1626;
+    --cta-bg:      #262038;
+    --cta-text:    #F4EFE8;
+    --mockup-frame: #4A4165;
+    --screen-bg:   linear-gradient(180deg, #221D31 0%, #1D1828 100%);
+    --screen-card: #2C2640;
+    --visual-nude: #221C2D;
+    --visual-lav:  #241E31;
+  }
+  .hero__glow {
+    background: radial-gradient(circle, rgba(255, 182, 72, 0.22) 0%, rgba(182, 156, 255, 0.18) 45%, transparent 70%);
+  }
+  .marquee { opacity: 0.08; }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,7 +109,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(253, 249, 243, 0.85);
+  background: var(--header-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
@@ -98,8 +141,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav__cta {
   padding: 10px 20px;
   border-radius: 999px;
-  background: var(--ink);
-  color: #fff !important;
+  background: var(--navcta-bg);
+  color: var(--navcta-text) !important;
   font-weight: 600;
   transition: background 0.15s ease, transform 0.15s ease;
 }
@@ -221,14 +264,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .phone {
   position: relative;
   width: 292px;
-  background: #2E2740;
+  background: var(--mockup-frame);
   border-radius: 46px;
   padding: 10px;
   box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   animation: float 7s ease-in-out infinite;
 }
 .phone__screen {
-  background: linear-gradient(180deg, #FDF9F3 0%, #FBF2E7 100%);
+  background: var(--screen-bg);
   border-radius: 37px;
   padding: 22px 18px 16px;
   min-height: 540px;
@@ -263,7 +306,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font-size: 11px;
 }
 .phone__card {
-  background: #fff;
+  background: var(--screen-card);
   border-radius: 20px;
   padding: 20px 18px;
   box-shadow: var(--shadow-sm);
@@ -313,7 +356,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   content: '';
   position: absolute;
   inset: 3px;
-  background: #fff;
+  background: var(--screen-card);
   border-radius: 50%;
 }
 .phone__bar {
@@ -327,7 +370,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   width: 26px;
   height: 4px;
   border-radius: 999px;
-  background: rgba(46, 39, 64, 0.12);
+  background: var(--border);
 }
 .phone__bar span:first-child { background: var(--accent); }
 
@@ -379,8 +422,8 @@ section { position: relative; }
   overflow: hidden;
 }
 .walk__visual--dark { background: #2E2740; }
-.walk__visual--nude { background: #F1E5D6; }
-.walk__visual--lav  { background: #EBE4FA; }
+.walk__visual--nude { background: var(--visual-nude); }
+.walk__visual--lav  { background: var(--visual-lav); }
 .walk__visual .spark--in { top: 10%; right: 12%; color: var(--gold); opacity: 0.75; }
 .walk__visual .spark--in2 { bottom: 12%; left: 10%; color: var(--violet); width: 18px; height: 18px; opacity: 0.8; }
 .walk__text { max-width: 440px; }
@@ -422,7 +465,7 @@ section { position: relative; }
 /* Journal card (walkthrough 02) */
 .chips-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .mini-chip {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 7px 15px;
@@ -431,7 +474,7 @@ section { position: relative; }
   color: var(--muted);
 }
 .jcard {
-  background: #fff;
+  background: var(--surface);
   border-radius: 22px;
   padding: 26px 24px;
   box-shadow: var(--shadow-sm);
@@ -442,7 +485,7 @@ section { position: relative; }
 /* Quote cards (walkthrough 03) */
 .qstack { display: flex; align-items: center; justify-content: center; }
 .qcard {
-  background: #fff;
+  background: var(--surface);
   border-radius: 20px;
   padding: 22px 22px;
   box-shadow: var(--shadow-sm);
@@ -586,8 +629,8 @@ section { position: relative; }
 .download-card {
   position: relative;
   overflow: hidden;
-  background: var(--ink);
-  color: #fff;
+  background: var(--cta-bg);
+  color: var(--cta-text);
   border-radius: var(--radius-lg);
   padding: 72px 40px;
   text-align: center;
@@ -630,7 +673,7 @@ section { position: relative; }
   gap: 22px;
 }
 .app-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 28px 26px;
@@ -753,7 +796,7 @@ section { position: relative; }
 .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
 .btn-ghost {
   background: transparent;
-  border-color: rgba(46, 39, 64, 0.16);
+  border-color: var(--border-strong);
   color: var(--ink);
 }
 .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }

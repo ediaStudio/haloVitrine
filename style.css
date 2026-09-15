@@ -669,8 +669,10 @@ section { position: relative; }
 /* ---------- Apps (More from DHA Studio) ---------- */
 .apps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 .app-card {
   background: var(--surface);
@@ -695,7 +697,6 @@ section { position: relative; }
   color: #fff;
 }
 .app-card__tile--fb  { background: linear-gradient(135deg, #6C63FF, #FF6584); }
-.app-card__tile--ma  { background: linear-gradient(135deg, #F4734B, #FFB648); }
 .app-card__tile--dha { background: linear-gradient(135deg, #4F7CFF, #7C5CFF); font-size: 14px; }
 .app-card h3 { font-size: 19px; }
 .app-card p { color: var(--muted); font-size: 14.5px; }

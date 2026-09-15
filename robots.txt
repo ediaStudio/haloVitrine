@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://halo.dhastudio.xyz/sitemap.xml
